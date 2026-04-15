@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Чистый дом | Профессиональная уборка</title>
+    <style>
+        /* ----- СБРОС И БАЗОВЫЕ СТИЛИ ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #ffffff;   /* белый фон */
+            color: #1e2a3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;    /* плавный скролл по якорям */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ----- ТИПОГРАФИКА И ЦВЕТА ----- */
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1e2a3e;
+            position: relative;
+        }
+        h2:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #2A6DFF;
+            margin: 0.75rem auto 0;
+            border-radius: 4px;
+        }
+
+        /* ----- КНОПКИ И АКЦЕНТЫ (синий #2A6DFF) ----- */
+        .btn {
+            display: inline-block;
+            background-color: #2A6DFF;
+            color: white;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(42, 109, 255, 0.2);
+        }
+        .btn:hover {
+            background-color: #1a55d0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(42, 109, 255, 0.25);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* ---------- ШАПКА (header) ---------- */
+        .header {
+            background: white;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+            background-color: rgba(255,255,255,0.96);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2A6DFF 0%, #1a4fcc 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        /* кнопка в шапке */
+        .header .btn {
+            padding: 10px 26px;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- БЛОК УСЛУГ (services) ---------- */
+        .services {
+            padding: 70px 0 60px;
+            background: white;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 20px;
+        }
+        .service-card {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.3s;
+            text-align: center;
+            padding-bottom: 28px;
+            border: 1px solid #f0f2f5;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 32px rgba(42, 109, 255, 0.12);
+            border-color: #e0e7ff;
+        }
+        /* заглушка для изображений */
+        .service-img {
+            background: #eef2fa;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #2A6DFF;
+            font-weight: 500;
+            background-image: linear-gradient(145deg, #f5f9ff 0%, #e9eff8 100%);
+            border-bottom: 2px solid rgba(42, 109, 255, 0.2);
+        }
+        .service-img span {
+            background: rgba(255,255,255,0.8);
+            padding: 8px 18px;
+            border-radius: 60px;
+            font-size: 1rem;
+            color: #2A6DFF;
+            backdrop-filter: blur(2px);
+        }
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin: 20px 0 10px;
+            color: #0f2b4f;
+        }
+        .service-card p {
+            padding: 0 20px;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- БЛОК «О НАС» ---------- */
+        .about {
+            background: #fafcff;
+            padding: 60px 0;
+            border-top: 1px solid #eef2ff;
+            border-bottom: 1px solid #eef2ff;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 32px;
+            border-radius: 40px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
+            text-align: center;
+        }
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #2d3e5f;
+            line-height: 1.5;
+        }
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---------- ФОРМА ЗАКАЗА ---------- */
+        .order-form {
+            padding: 70px 0 80px;
+            background: white;
+        }
+        .form-card {
+            max-width: 580px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 48px;
+            padding: 32px 32px 44px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eef2ff;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1e2f44;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 1rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 60px;
+            transition: all 0.2s;
+            background: #fefefe;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #2A6DFF;
+            box-shadow: 0 0 0 3px rgba(42, 109, 255, 0.2);
+        }
+        .order-form .btn {
+            width: 100%;
+            font-size: 1.1rem;
+            padding: 14px;
+            margin-top: 12px;
+            background-color: #2A6DFF;
+            border-radius: 60px;
+            font-weight: 700;
+        }
+
+        /* ---------- ПОДВАЛ (footer) ---------- */
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid #ecf3fa;
+            padding: 28px 0;
+            text-align: center;
+            color: #4b6584;
+            font-size: 0.9rem;
+        }
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* ---------- АДАПТИВ (МЕДИА-ЗАПРОСЫ) ---------- */
+        @media (max-width: 880px) {
+            .services-grid {
+                gap: 24px;
+            }
+            .service-card h3 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .logo {
+                font-size: 1.7rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;   /* на телефоне — одна колонка */
+                gap: 28px;
+            }
+            .service-img {
+                height: 160px;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .about-content {
+                padding: 28px 20px;
+            }
+            .about-content p {
+                font-size: 1rem;
+            }
+            .form-card {
+                padding: 24px 20px 36px;
+            }
+            .btn {
+                padding: 10px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-card h3 {
+                font-size: 1.3rem;
+            }
+            .header .btn {
+                width: 100%;
+                max-width: 260px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================= ШАПКА САЙТА ================= -->
+<header class="header">
+    <div class="container">
+        <div class="logo">✨ Чистый дом</div>
+        <!-- Кнопка «Заказать уборку» ведёт к форме -->
+        <a href="#order-form" class="btn">📞 Заказать уборку</a>
+    </div>
+</header>
+
+<main>
+    <!-- ================= БЛОК УСЛУГ (3 карточки) ================= -->
+    <section class="services">
+        <div class="container">
+            <h2>Наши услуги</h2>
+            <div class="services-grid">
+                <!-- Услуга 1: Поддерживающая уборка -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <span>🧹 placeholder</span>
+                    </div>
+                    <h3>Поддерживающая уборка</h3>
+                    <p>Регулярная поддержание идеального порядка. Пылесосим, моем полы, протираем поверхности — ваш дом всегда сияет.</p>
+                </div>
+                <!-- Услуга 2: Генеральная уборка -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <span>🧽 placeholder</span>
+                    </div>
+                    <h3>Генеральная уборка</h3>
+                    <p>Комплексная уборка всей квартиры/дома: от потолков до труднодоступных мест. Идеально для наведения безупречной чистоты.</p>
+                </div>
+                <!-- Услуга 3: Мытьё окон -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <span>🪟 placeholder</span>
+                    </div>
+                    <h3>Мытьё окон</h3>
+                    <p>Безопасное и качественное мытье рам и стекол. Профессиональные средства, никаких разводов, рамы сияют.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= БЛОК «О НАС» ================= -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>О компании</h2>
+                <p>🏆 «Чистый дом» — это команда профессионалов с 7-летним опытом. Мы используем только сертифицированную химию и современное оборудование Karcher.</p>
+                <p>💎 Наша миссия — дарить вам свободу от бытовых хлопот. Более 1200 довольных клиентов уже оценили безупречный результат и индивидуальный подход.</p>
+                <p>🤝 Работаем аккуратно, соблюдаем сроки и гарантируем 100% чистоту после уборки. Доверьте свой дом настоящим экспертам!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ФОРМА ЗАКАЗА (поля Имя, Телефон) ================= -->
+    <section id="order-form" class="order-form">
+        <div class="container">
+            <div class="form-card">
+                <h2>Заказать уборку</h2>
+                <form id="cleanForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" placeholder="Анна или Дмитрий" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Номер телефона</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 (900) 123-45-67" required>
+                    </div>
+                    <button type="submit" class="btn">📩 Отправить заявку</button>
+                </form>
+                <p style="font-size: 0.8rem; text-align: center; margin-top: 20px; color: #6c86a3;">Мы перезвоним в течение 15 минут</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- ================= ПОДВАЛ С КОПИРАЙТОМ ================= -->
+<footer class="footer">
+    <div class="container">
+        <p>© 2025 Клининговая компания «Чистый дом». Все права защищены.</p>
+        <p style="margin-top: 8px; font-size: 0.75rem;">Чистота, которой доверяют</p>
+    </div>
+</footer>
+
+<!-- Небольшой скрипт для отправки формы (без перезагрузки, алерт) -->
+<script>
+    (function() {
+        // Получаем форму по ID
+        const form = document.getElementById('cleanForm');
+        
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();   // отменяем перезагрузку страницы
+                
+                // поля
+                const nameInput = document.getElementById('name');
+                const phoneInput = document.getElementById('phone');
+                
+                let isValid = true;
+                // простая проверка на заполненность
+                if (!nameInput.value.trim()) {
+                    alert('Пожалуйста, введите ваше имя.');
+                    nameInput.focus();
+                    isValid = false;
+                } 
+                else if (!phoneInput.value.trim()) {
+                    alert('Укажите номер телефона, чтобы мы могли с вами связаться.');
+                    phoneInput.focus();
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Имитация отправки
+                    alert(`Спасибо, ${nameInput.value.trim()}! Ваша заявка принята. Наш менеджер свяжется с вами в ближайшее время.`);
+                    // Очищаем поля (опционально, но приятно)
+                    nameInput.value = '';
+                    phoneInput.value = '';
+                }
+            });
+        }
+        
+        // дополнительно: обработка клика на кнопку в шапке — якорь уже работает за счёт href="#order-form"
+        // но добавим небольшое улучшение для плавности (браузер поддерживает scroll-behavior, но на всякий случай)
+        const orderBtn = document.querySelector('.header .btn');
+        if (orderBtn && orderBtn.getAttribute('href') === '#order-form') {
+            orderBtn.addEventListener('click', function(e) {
+                // стандартный якорь уже работает, но если требуется доп. поведение — оставляем как есть
+                // для полной уверенности, предотвращать не нужно, скролл уже smooth из-за CSS
+            });
+        }
+    })();
+</script>
+</body>
+</html>
